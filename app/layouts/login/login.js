@@ -3,16 +3,17 @@ import {Image, ScrollView, Text, TextInput, View, StyleSheet} from "react-native
 import Container from "../../components/container";
 import Button from "../../components/button";
 import images from "../../config/images";
+import {login} from "../../api/api";
 
 
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {text: '', password: ''};
+        this.state = {email: '', password: ''};
     }
 
     _login() {
-        console.log("login")
+        login(this.state.email, this.state.password);
     }
 
     render() {
@@ -45,7 +46,8 @@ export default class Login extends React.Component {
                             title="Go!"
                             label="Go!"
                             styles={{button: styles.primaryButton, label: styles.buttonWhiteText}}
-                            onPress={this._login.bind(this)} />
+                            onPress={this._login.bind(this)}
+                        />
                     </Container>
                 </View>
             </ScrollView>
