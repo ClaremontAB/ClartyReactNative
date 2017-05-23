@@ -17,9 +17,18 @@ const ApiUtils = {
         try {
             await AsyncStorage.setItem(item, selectedValue);
         } catch (error) {
-            console.error('AsyncStorage error: ' + error.message);
+            console.error('AsyncStorage error', error);
         }
     },
+
+    async getToken() {
+        try {
+            return await AsyncStorage.getItem(TOKEN_KEY);
+        } catch(error) {
+            console.error('AsyncStorage error', error);
+        }
+    }
+
 };
 
 const TOKEN_KEY = "authentication";

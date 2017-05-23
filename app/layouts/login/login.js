@@ -13,7 +13,9 @@ export default class Login extends React.Component {
     }
 
     _login() {
-        login(this.state.email, this.state.password);
+        login(this.state.email, this.state.password).then(() => {
+            this.props.setLoggedIn();
+        })
     }
 
     render() {
@@ -26,8 +28,11 @@ export default class Login extends React.Component {
                 <Container>
                     <TextInput
                         style={styles.textInput}
-                        placeholder="Email"
+                        placeholder="Epost"
                         keyboardType="email-address"
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        autoFocus={true}
                         onChangeText={(email) => this.setState({email})}
                     />
                 </Container>
@@ -65,11 +70,12 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 20,
         textAlign: 'center',
-        margin: 20,
+        marginBottom: 30,
     },
     logo: {
         alignSelf: 'center',
-        margin: 30
+        margin: 30,
+        marginTop: 40
     },
     textInput: {
         padding: 10,
@@ -82,7 +88,7 @@ const styles = StyleSheet.create({
         color: '#FFF',
     },
     primaryButton: {
-        backgroundColor: '#34A853'
+        backgroundColor: '#69AAD4'
     },
     footer: {
         marginTop: 100

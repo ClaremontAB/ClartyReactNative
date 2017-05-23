@@ -4,7 +4,7 @@ import {ApiUtils, TOKEN_KEY} from "./api-utils";
 import ReactNative from 'react-native';
 
 const {
-    AlertIOS
+    Alert
 } = ReactNative;
 
 function login(username, password) {
@@ -24,10 +24,12 @@ function login(username, password) {
             let auth = response.headers.get('Authorization');
             let token = auth.substring(auth.indexOf(" ") + 1);
             ApiUtils._onValueChange(TOKEN_KEY, token);
-            AlertIOS.alert("Success!");
+            return Promise.resolve(response);
         })
-        .catch(e => console.error(e))
-        .done();
+        .catch(e => {
+            Alert.alert("Inloggning misslyckades", "Kontrollera e-post och lösenord");
+            return Promise.reject(new Error('Login failed'));
+        });
 }
 
 export { login }
