@@ -1,33 +1,38 @@
 import React, {Component} from 'react';
-import Login from "./layouts/login/login";
-import {ApiUtils} from "./api/api-utils";
+import Office365Login, {CLIENT_ID, config, RESOURCE_ID} from "./layouts/login/Office365Login";
 import Start from "./layouts/start/start";
+import {ReactNativeAD} from "react-native-azure-ad";
 
 export default class ClartyReactNative extends Component {
+
     constructor(props) {
         super(props);
+        new ReactNativeAD(config);
         this.state = {loggedIn: false};
-
-        ApiUtils.getToken().then((token) => {
-            if(token) {
-                // TODO authenticate
-                // this.setState({loggedIn: true});
-            }
-        });
+        this.checkToken();
     }
 
-    setLoggedIn() {
-        this.setState({loggedIn: true});
+    checkToken() {
+        let ctx = ReactNativeAD.getContext(CLIENT_ID);
+        ctx.assureToken(RESOURCE_ID).then((token) => {
+            if (token) {
+                this.setState({loggedIn: true});
+            }
+        })
+    }
+
+    onHideOffice365View() {
+        this.checkToken();
     }
 
     render() {
-        if(this.state.loggedIn) {
+        if (this.state.loggedIn) {
             return (
                 <Start/>
             )
         } else {
             return (
-                <Login setLoggedIn={this.setLoggedIn.bind(this)}/>
+                <Office365Login onHide={this.onHideOffice365View.bind(this)}/>
             )
         }
     }
