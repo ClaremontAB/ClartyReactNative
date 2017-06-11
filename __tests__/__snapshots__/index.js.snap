@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F5FCFF",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <WebView
+    automaticallyAdjustContentInsets={false}
+    decelerationRate="normal"
+    domStorageEnabled={true}
+    injectedJavaScript="document.getElementsByTagName('body')[0].style.height = '1334px';"
+    javaScriptEnabled={true}
+    javaScriptEnabledAndroid={true}
+    onLoadEnd={[Function]}
+    onNavigationStateChange={[Function]}
+    onShouldStartLoadWithRequest={[Function]}
+    scalesPageToFit={true}
+    source={
+      Object {
+        "uri": "https://login.microsoftonline.com/common/oauth2/authorize?response_type=code&client_id=f4d22284-40ab-4d51-847d-f5bfb55b1446",
+      }
+    }
+    startInLoadingState={false}
+    style={
+      Array [
+        undefined,
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+          "height": 1334,
+          "width": 750,
+        },
+      ]
+    }
+  />
+</View>
+`;
